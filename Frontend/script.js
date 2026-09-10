@@ -9,6 +9,7 @@
   const foodProgressBar = document.getElementById('foodProgressBar');
   const foodPercentage = document.getElementById('foodPercentage');
   const foodRemaining = document.getElementById('foodRemaining');
+    const foodTotal = document.getElementById('foodTotal');
   const foodLoading = document.getElementById('foodLoading');
   const foodData = document.getElementById('foodData');
   const foodError = document.getElementById('foodError');
