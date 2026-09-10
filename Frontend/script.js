@@ -687,21 +687,7 @@ if (logoutButton) {
   // ============================================
 
       // Auto-login after signup
-      if (userData && userData.name) {
-        updateProfileAfterLogin(userData);
-      }
-
-      // Close overlay after success
-      setTimeout(() => {
-        closeModal(authOverlay);
-      }, 1500);
-    })
-    .catch(error => {
-      signupMsg.innerText = '❌ ' + (error.message || 'Connection failed!');
-      signupMsg.style.color = 'rgba(255,150,150,0.8)';
-      console.error('Signup error:', error);
-    });
-  });
+     
 
   // ============================================
 // SETTINGS OVERLAY
