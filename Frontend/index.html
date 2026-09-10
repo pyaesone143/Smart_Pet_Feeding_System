@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Feeder · Ethereal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header with Account & History buttons -->
+    <div class="app-header">
+      <h1>
+        <i class="fas fa-paw"></i>
+        Pet Feeder
+      </h1>
+      <div class="header-actions">
+          <!-- Setting Button -->
+  <button class="header-btn" id="openSettingBtn">
+    <i class="fas fa-cog"></i>
+    Setting
+  </button>
+        <!-- Account Button -->
+        <button class="header-btn" id="openAccountBtn">
+          <i class="fas fa-user-circle"></i>
+          Account
+        </button>
+      </div>
+    </div>
+
+    <!-- PROFILE - Admin as default -->
+    <div class="profile-section">
+      <div class="profile-label">Profile</div>
+      <div class="profile-circle" id="profileCircle">A</div>
+      <div class="profile-name" id="profileName">Admin</div>
+    </div>
+
+    <!-- Feed Now - Separate Card -->
+    <div class="card">
+      <h2><i class="fas fa-bowl-food"></i> Feed Now</h2>
+      <button class="feed-btn" id="feedButton">
+        <i class="fas fa-utensils"></i> Feed now
+      </button>
+      <p id="feedStatus"><span style="opacity:0.3; font-weight:400;">press to serve</span></p>
+    </div>
+
+    <!-- Food Level - Separate Card -->
+    <div class="card">
+      <h2><i class="fas fa-seedling"></i> Food Level</h2>
+      <div class="food-level-container">
+        <div id="foodLoading" class="food-loading">
+          <i class="fas fa-spinner fa-spin"></i> Loading food level...
+        </div>
+        <div id="foodData" style="display:none;">
+          <div class="food-level-header">
+            <span class="food-level-label">
+              <i class="fas fa-weight-scale"></i> Remaining
+            </span>
+            <span class="food-level-percentage" id="foodPercentage">0%</span>
+          </div>
+          <div class="food-progress-container">
+            <div class="food-progress-bar" id="foodProgressBar"></div>
+          </div>
+          <div class="food-level-details">
+            <span id="foodRemaining">0 g remaining</span>
+            <span id="foodTotal">300 g total</span>
+          </div>
+        </div>
+        <div id="foodError" class="food-error" style="display:none;">
+          <i class="fas fa-exclamation-circle"></i> Unable to load food data
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== OVERLAY (Login / Sign Up) ===== -->
+  <div class="overlay" id="authOverlay">
+    <div class="overlay-card">
+      <button class="overlay-close" id="closeOverlayBtn"><i class="fas fa-times"></i></button>
+
+      <h2><i class="fas fa-user-circle"></i> Account</h2>
+      <div class="overlay-sub">access your pet feeder profile</div>
+
+      <!-- toggle -->
+      <div class="auth-toggle" id="overlayToggle">
+        <button class="active" data-mode="login">Login</button>
+        <button data-mode="signup">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <div class="auth-form" id="overlayLoginForm">
+        <input type="email" placeholder="Email" id="overlayLoginEmail" />
+        <input type="password" placeholder="Password" id="overlayLoginPassword" />
+        <button class="auth-btn" id="overlayLoginBtn"><i class="fas fa-sign-in-alt"></i> &nbsp;Login</button>
+        <!--logout button-->
+        <button id="logoutButton" type="button">Log Out</button>
+        <div class="auth-message" id="overlayLoginMessage"></div>
+      </div>
+
+      <!-- Sign Up Form -->
+      <div class="auth-form hidden" id="overlaySignupForm">
+        <input type="text" placeholder="Full Name" id="overlaySignupName" />
+        <input type="email" placeholder="Email" id="overlaySignupEmail" />
+        <input type="password" placeholder="Password" id="overlaySignupPassword" />
+        <button class="auth-btn" id="overlaySignupBtn"><i class="fas fa-user-plus"></i> &nbsp;Sign Up</button>
+        <div class="auth-message" id="overlaySignupMessage"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OVERLAY (Feeding History) ===== -->
+  <div class="overlay" id="historyOverlay">
+    <div class="overlay-card history-card">
+      <button class="overlay-close" id="closeHistoryBtn"><i class="fas fa-times"></i></button>
+
+      <h2><i class="fas fa-rotate-left"></i> Feeding History</h2>
+      <div class="overlay-sub">last feedings (time & grams)</div>
+
+      <!-- History Content -->
+      <div id="historyEmpty" class="history-empty">No feeding records yet</div>
+      <ul id="historyList" class="history-list hidden"></ul>
+    </div>
+  </div>
+
+  
+  <!-- ===== OVERLAY (Settings) ===== -->
+<div class="overlay" id="settingOverlay">
+
+  <div class="overlay-card setting-card">
+
+    <!-- Close Button -->
+    <button class="overlay-close" id="closeSettingBtn">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <h2>
+      <i class="fas fa-cog"></i> Settings
+    </h2>
+
+    <div class="overlay-sub">
+      Manage your pet feeder
+    </div>
+
+    <!-- Set Amount -->
+    <button class="setting-option" id="openSetAmountBtn">
+      <div class="setting-icon">
+        <i class="fas fa-weight-hanging" style="color: #15912c;"></i>
+      </div>
+
+      <div class="setting-text">
+        <strong>Set Amount</strong>
+        <span>Set maximum food capacity</span>
+      </div>
+
+      <i class="fas fa-chevron-right setting-arrow"></i>
+    </button>
+
+   <!-- ===== OVERLAY (Set Food Amount) ===== -->
+<div class="overlay" id="setAmountOverlay">
+  <div class="overlay-card set-amount-card">
+
+    <button class="overlay-close" id="closeSetAmountBtn">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <h2>
+      <i class="fas fa-weight-hanging"></i>
+      Set Food Amount
+    </h2>
+
+    <div class="overlay-sub">
+      Set target food amount
+    </div>
+
+    <div class="amount-input-wrapper">
+      <input
+        type="number"
+        id="foodAmountInput"
+        min="1"
+        step="1"
+        placeholder="Enter amount"
+        style="color: #ffffff;"
+      />
+      <span>g</span>
+    </div>
+
+    <button class="save-amount-btn" id="saveAmountBtn">
+
+      <i class="fas fa-check"></i>
+       <span style="color: #ffffff;">Save Amount</span>
+    
+    </button>
+
+  </div>
+</div>
+
+    <!--History-->
+    <button class="setting-option" id="openHistoryFromSettingBtn">
+      <div class="setting-icon">
+        <i class="fas fa-rotate-left" style="color: #15912c;"></i>
+      </div>
+
+      <div class="setting-text">
+        <strong>History</strong>
+        <span>View your feeding history</span>
+      </div>
+
+      <i class="fas fa-chevron-right setting-arrow"></i>
+    </button>
+
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,939 @@
+/* === RESET & BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  font-family: 'Quicksand', 'Segoe UI', Roboto, sans-serif;
+  background-image: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 50, 28, 0.3);
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -15%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168, 212, 156, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* === HEADER === */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.6rem;
+  padding: 0 0.2rem;
+}
+
+.app-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+.app-header h1 i {
+  color: rgba(105, 234, 69, 0.8);
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.1));
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* === ACTION BUTTONS (Account / History) === */
+.header-btn {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  padding: 0.4rem 1rem 0.4rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Quicksand', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.header-btn i {
+  font-size: 0.9rem;
+  color: rgba(105, 234, 69, 0.6);
+}
+
+.header-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* === CARDS (main) === */
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.35s ease;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.card h2 {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card h2 i {
+  color: rgba(52, 131, 30, 0.5);
+  font-size: 0.95rem;
+  width: 1.6rem;
+}
+
+/* ============================================
+   PROFILE - Directly on background, clean
+   ============================================ */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem 0 0.2rem 0;
+}
+
+.profile-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.profile-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(144, 238, 144, 0.15);
+  border: 2px solid rgba(144, 238, 144, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: rgba(105, 234, 69, 0.7);
+  margin-bottom: 0.6rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.profile-circle:hover {
+  border-color: rgba(105, 234, 69, 0.5);
+  transform: scale(1.05);
+}
+
+.profile-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: -0.3px;
+}
+
+/* ============================================
+   FOOD LEVEL INDICATOR
+   ============================================ */
+.food-level-container {
+  padding: 0.2rem 0;
+}
+
+.food-level-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.food-level-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.food-level-label i {
+  color: rgba(105, 234, 69, 0.6);
+}
+
+.food-level-percentage {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.food-progress-container {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  height: 8px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+}
+
+.food-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(127, 176, 115, 0.7), rgba(74, 138, 64, 0.8));
+  border-radius: 100px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.food-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.food-level-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
+}
+
+.food-level-details span:last-child {
+  color: rgba(105, 234, 69, 0.6);
+}
+
+.food-loading {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+  padding: 0.5rem 0;
+}
+
+.food-error {
+  text-align: center;
+  color: rgba(255, 150, 150, 0.7);
+  font-size: 0.8rem;
+  padding: 0.5rem 0;
+}
+
+/* Feed button */
+.feed-btn {
+  background: rgba(61, 210, 34, 0.25);
+  backdrop-filter: blur(12px);
+  border: none;
+  padding: 0.9rem 1.8rem;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.feed-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transition: left 0.5s ease;
+}
+
+.feed-btn:hover::before {
+  left: 100%;
+}
+
+.feed-btn:hover {
+  transform: translateY(-3px) scale(1.01);
+  background: rgba(42, 150, 24, 0.35);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.12);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.feed-btn:active {
+  transform: scale(0.97);
+}
+
+.feed-btn i {
+  font-size: 1.2rem;
+  color: rgba(100, 199, 75, 0.7);
+}
+
+.feed-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+#feedStatus {
+  margin-top: 0.6rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  min-height: 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* ============================
+   OVERLAY BASE (Shared Style)
+   ============================ */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 20, 10, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.overlay-card {
+  background: rgba(30, 50, 30, 0.4);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 40px;
+  padding: 2rem 2.2rem;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transform: scale(0.96) translateY(10px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  opacity: 0;
+  position: relative;
+}
+
+.overlay.active .overlay-card {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.overlay-card h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.2rem;
+}
+
+.overlay-card h2 i {
+  color: rgba(105, 234, 69, 0.7);
+}
+
+.overlay-sub {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.3px;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.4rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.overlay-close:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Auth Forms */
+.overlay-card .auth-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.overlay-card .auth-toggle button {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 40px;
+  padding: 0.5rem 0;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Quicksand', sans-serif;
+  backdrop-filter: blur(4px);
+}
+
+.overlay-card .auth-toggle button.active {
+  background: rgba(61, 210, 34, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(61, 210, 34, 0.2);
+  box-shadow: 0 0 20px rgba(61, 210, 34, 0.03);
+}
+
+.overlay-card .auth-toggle button:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.overlay-card .auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.overlay-card .auth-form input {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 40px;
+  padding: 0.7rem 1.2rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  outline: none;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.overlay-card .auth-form input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+  font-weight: 400;
+}
+
+.overlay-card .auth-form input:focus {
+  border-color: rgba(61, 210, 34, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(61, 210, 34, 0.04);
+}
+
+.overlay-card .auth-form .auth-btn {
+  background: rgba(61, 210, 34, 0.2);
+  border: none;
+  border-radius: 40px;
+  padding: 0.7rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  margin-top: 0.2rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.overlay-card .auth-form .auth-btn:hover {
+  background: rgba(42, 150, 24, 0.3);
+  transform: scale(1.01);
+}
+
+.overlay-card .auth-form .auth-btn:active {
+  transform: scale(0.97);
+}
+
+.overlay-card .auth-message {
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  min-height: 1.2rem;
+  margin-top: 0.2rem;
+}
+
+/* ============================================
+   SETTINGS OVERLAY
+   ============================================ */
+
+.setting-card {
+  width: 400px;
+  max-width: 90%;
+  padding: 30px;
+  position: relative;
+}
+
+.setting-card h2 {
+  margin: 0;
+  text-align: center;
+  font-size: 26px;
+}
+
+.setting-card h2 i {
+  margin-right: 8px;
+}
+
+.setting-card .overlay-sub {
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 25px;
+}
+
+
+/* ============================================
+   SETTING OPTIONS
+   ============================================ */
+
+.setting-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: left;
+
+  border: none;
+  background: transparent;
+
+  padding: 16px;
+  margin-bottom: 12px;
+
+  border-radius: 12px;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+/* Hover effect */
+
+.setting-option:hover {
+  background: rgba(13, 159, 23, 0.06);
+  transform: translateX(3px);
+}
+
+
+/* Icon */
+
+.setting-icon {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(21, 148, 59, 0.06);
+
+  font-size: 18px;
+
+  flex-shrink: 0;
+}
+
+
+/* Text container */
+
+.setting-text {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 14px;
+}
+
+
+/* Main text */
+
+.setting-text strong {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* Description */
+
+.setting-text span {
+  margin-top: 4px;
+
+  font-size: 13px;
+
+  opacity: 0.65;
+   color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* Right arrow */
+
+.setting-arrow {
+  margin-left: auto;
+
+  font-size: 14px;
+
+  opacity: 0.5;
+}
+
+
+/* ============================================
+   SETTING OVERLAY CLOSE BUTTON
+   ============================================ */
+
+#settingOverlay .overlay-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  opacity: 0.7;
+
+  transition: 0.2s ease;
+}
+
+#settingOverlay .overlay-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* end of  setting overlay styles */
+
+/* === HISTORY STYLES === */
+.history-card {
+  background: rgba(24, 44, 24, 0.85);
+  border-radius: 28px;
+}
+
+.history-empty {
+  text-align: center;
+  color: rgba(28, 58, 37, 0.4);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 1rem 0;
+}
+
+.history-list {
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-right: 0.2rem;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.6rem 1rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.8rem;
+  color: rgba(236, 225, 225, 0.918);
+  font-weight: 600;
+}
+
+.history-item span {
+  color: rgba(36, 61, 29, 0.8);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================
+   SET FOOD AMOUNT
+   ============================ */
+
+.set-amount-card {
+  background: rgba(24, 44, 24, 0.85);
+  border-radius: 28px;
+}
+
+/* Amount input area */
+.amount-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Input */
+.amount-input-wrapper input {
+  width: 150px;
+  height: 45px;
+
+  padding: 0 15px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: rgba(109, 105, 105, 0.9);
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  text-align: center;
+
+  outline: none;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition: 0.25s ease;
+}
+
+/* Input focus */
+.amount-input-wrapper input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+
+  background: rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+}
+
+/* Placeholder */
+.amount-input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Gram */
+.amount-input-wrapper span {
+  color: rgba(255, 255, 255, 0.8);
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+
+/* ============================
+   SAVE BUTTON
+   ============================ */
+
+.save-amount-btn {
+  width: 100%;
+  height: 44px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: rgba(121, 114, 114, 0.85);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.save-amount-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+
+  border-color: rgba(255, 255, 255, 0.15);
+
+  transform: translateY(-1px);
+}
+
+.save-amount-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+  .container {
+    max-width: 100%;
+  }
+  .card {
+    padding: 1.2rem 1.2rem;
+    border-radius: 24px;
+  }
+  .app-header h1 {
+    font-size: 1.4rem;
+  }
+  .feed-btn {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
+  }
+  .card h2 {
+    font-size: 0.55rem;
+  }
+  .overlay-card {
+    padding: 1.5rem 1.2rem;
+    margin: 1rem;
+  }
+  .profile-circle {
+    width: 64px;
+    height: 64px;
+    font-size: 1.8rem;
+  }
+  .profile-name {
+    font-size: 1.1rem;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+/* Logout button */
+#logoutButton {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid rgba(12, 123, 55, 0.25);
+  border-radius: 10px;
+  background: rgba(9, 142, 36, 0.08);
+  color: rgba(141, 6, 6, 0.85);
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#logoutButton:hover {
+  background: rgba(1, 50, 12, 0.15);
+  border-color: rgba(16, 156, 37, 0.4);
+}
+
+#logoutButton:active {
+  transform: scale(0.98);
+}
+/* Overlay show/hide */
+.overlay {
+  display: none;
+}
+
+.overlay.active {
+  display: flex;
+}
