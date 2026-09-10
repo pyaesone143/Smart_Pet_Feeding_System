@@ -21,6 +21,15 @@ public class FoodStatus {
     @Column(name = "user_id", nullable = false)
     private int userId;
 
+    @ManyToOne
+    @JoinColumn(
+        name = "user_id",
+        referencedColumnName = "user_id",
+        insertable = false,
+        updatable = false
+    )
+    private User user;
+
     @Column(name = "current_gram", nullable = false)
     private double currentGram;
 
