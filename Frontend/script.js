@@ -430,7 +430,7 @@ async function feedPet() {
 // ============================================
 // FORMAT FEEDING DATE & TIME
 // ============================================
-if (feedingTime) {
+
 
   let feedingTime = item.feedingTime;
 
