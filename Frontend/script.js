@@ -580,30 +580,11 @@ const closeHistoryBtn =
   // ============================================
   // AUTH TOGGLE
   // ============================================
-  const toggleBtns = document.querySelectorAll('#overlayToggle button');
   const loginForm = document.getElementById('overlayLoginForm');
-  const signupForm = document.getElementById('overlaySignupForm');
-  const loginMsg = document.getElementById('overlayLoginMessage');
-  const signupMsg = document.getElementById('overlaySignupMessage');
+const loginMsg = document.getElementById('overlayLoginMessage');
 
-  toggleBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      toggleBtns.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      const mode = this.dataset.mode;
-      if (mode === 'login') {
-        loginForm.classList.remove('hidden');
-        signupForm.classList.add('hidden');
-        loginMsg.innerText = '';
-        signupMsg.innerText = '';
-      } else {
-        signupForm.classList.remove('hidden');
-        loginForm.classList.add('hidden');
-        loginMsg.innerText = '';
-        signupMsg.innerText = '';
-      }
-    });
-  });
+loginForm.classList.remove('hidden');
+loginMsg.innerText = '';
 
   // ============================================
   // LOGIN - REAL DATA FROM DATABASE
@@ -703,59 +684,6 @@ if (logoutButton) {
   // ============================================
   // SIGNUP - REAL DATA TO DATABASE
   // ============================================
-  document.getElementById('overlaySignupBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('overlaySignupName').value.trim();
-    const email = document.getElementById('overlaySignupEmail').value.trim();
-    const password = document.getElementById('overlaySignupPassword').value.trim();
-
-    if (!name || !email || !password) {
-      signupMsg.innerText = '⚠️ Please fill in all fields.';
-      signupMsg.style.color = 'rgba(255,200,150,0.8)';
-      return;
-    }
-
-    signupMsg.innerText = '⏳ Creating account...';
-    signupMsg.style.color = 'rgba(255,255,255,0.6)';
-
-    fetch(API_BASE + '/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password })
-    })
-    .then(response => {
-      if (!response.ok) {
-        return response.text().then(text => { throw new Error(text || 'Sign up failed'); });
-      }
-      return response.json();
-    })
-    .then(userData => {
-      console.log('Signup successful, user data:', userData);
-
-      // SAVE NEW USER AS CURRENT USER
-      localStorage.setItem('currentUser', JSON.stringify(userData));
-      localStorage.setItem('userId', userData.user_id);
-      console.log('Current user saved after signup:', userData);
-      
-//current user to backend
-      fetch(API_BASE + '/api/current-user/' + userData.user_id, {
-  method: 'POST'
-})
-.then(response => response.text())
-.then(data => {
-  console.log('Backend current user:', data);
-})
-.catch(error => {
-  console.error('Failed to set current user:', error);
-});
-//
-      signupMsg.innerText = '✅ Account created successfully!';
-      signupMsg.style.color = 'rgba(180,220,170,0.8)';
-
-      // Clear input fields
-      document.getElementById('overlaySignupName').value = '';
-      document.getElementById('overlaySignupEmail').value = '';
-      document.getElementById('overlaySignupPassword').value = '';
 
       // Auto-login after signup
       if (userData && userData.name) {
