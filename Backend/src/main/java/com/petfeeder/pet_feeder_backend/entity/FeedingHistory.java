@@ -21,6 +21,16 @@ public class FeedingHistory {
     @Column(name = "feeding_user_id", nullable = false)
     private int feedingUserId;
 
+	 @ManyToOne
+    @JoinColumn(
+        name = "feeding_user_id",
+        referencedColumnName = "user_id",
+        insertable = false,
+        updatable = false
+    )
+    private User user;
+
+
     @Column(name = "feeding_time")
     private LocalDateTime feedingTime;
 
