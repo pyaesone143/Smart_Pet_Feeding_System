@@ -1,0 +1,21 @@
+# Spring Boot
+Backend/target/
+Backend/.classpath
+Backend/.project
+Backend/.settings/
+
+# Logs
+*.log
+
+# Environment / secrets
+.env
+
+# ESP32 WiFi credentials
+ESP32/secrets.h 
+
+# IDE
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
